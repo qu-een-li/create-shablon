@@ -8,6 +8,13 @@ def index0():
     return render_template("index.html", username="ll", title="Миссия колонизации Марса")
 
 
+@app.route('/training/<prof>')
+def training(prof):
+    if "инженер" in prof:
+        return render_template("training.html", title2="Инженерные тренажеры", title="Миссия колонизации")
+    return render_template("training.html", title2="Научные симуляторы", title="Миссия колонизации")
+
+
 @app.route('/index')
 def index():
     return "И на марсе будут яблони цвести!"
