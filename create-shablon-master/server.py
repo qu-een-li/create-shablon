@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for, request
 
 app = Flask(__name__)
 
@@ -6,6 +6,19 @@ app = Flask(__name__)
 @app.route('/')
 def index0():
     return render_template("index.html", username="Иванов", title="Миссия колонизации Марса")
+
+
+@app.route('/registration', methods=['POST', 'GET'])
+def registration():
+    if request.method == "GET":
+        return render_template("registration.html")
+    elif request.method == "POST":
+        man = dict()
+        man["email"] = request.form.get("email")
+        man["school_class"] = request.form.get("class")
+        man["about"] = request.form.get("about")
+
+        return render_template("auto_answer.html", **man)
 
 
 list_profession = ["капитан", "пилот", "строитель", "врач"]
